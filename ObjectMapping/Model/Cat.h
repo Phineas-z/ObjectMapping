@@ -16,6 +16,14 @@
 @interface Cat : Animal
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) Mouse *food;
+@property (nonatomic, retain) NSSet *foods;
+@end
+
+@interface Cat (CoreDataGeneratedAccessors)
+
+- (void)addFoodsObject:(Mouse *)value;
+- (void)removeFoodsObject:(Mouse *)value;
+- (void)addFoods:(NSSet *)values;
+- (void)removeFoods:(NSSet *)values;
 
 @end

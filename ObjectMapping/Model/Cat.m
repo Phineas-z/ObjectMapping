@@ -13,6 +13,6 @@
 @implementation Cat
 
 @dynamic name;
-@dynamic food;
+@dynamic foods;
 
 @end

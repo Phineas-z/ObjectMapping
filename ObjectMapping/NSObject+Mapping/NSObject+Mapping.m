@@ -15,6 +15,7 @@
 
 - (instancetype)JSONObject {
     // Returned JSON value could be array/dictionary
+    // Support NSArray for to-many relationship
     if ([self isKindOfClass:[NSArray class]]) {
         //
         NSMutableArray *jsonObject = [NSMutableArray array];
@@ -29,8 +30,15 @@
         
         return [NSArray arrayWithArray:jsonObject];
         
-    } else {
-        // Single object
+    }
+    
+    // Support NSSet for to-many relationship, which is required by NSManagedObject
+    else if ([self isKindOfClass:[NSSet class]]) {
+        return [[(NSSet*)self allObjects] JSONObject];
+    }
+    
+    // Single object
+    else {
         NSMutableDictionary *jsonObject = [NSMutableDictionary dictionary];
         // Iterate property dictionary
         NSDictionary *propertyDictionary = [[self class] propertyDictionary];

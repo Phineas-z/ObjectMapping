@@ -26,12 +26,18 @@
     
     Cat *tom = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Cat class]) inManagedObjectContext:moc];
     Mouse *jerry = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Mouse class]) inManagedObjectContext:moc];
+    Mouse *beta = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Mouse class]) inManagedObjectContext:moc];
     
     jerry.age = 1;
     jerry.predator = NO;
     jerry.weight = .5;
     
-    tom.food = jerry;
+    beta.age = 3;
+    beta.predator = NO;
+    beta.weight = 1.;
+    
+    [tom addFoodsObject:jerry];
+    [tom addFoodsObject:beta];
     tom.name = @"Tom";
     tom.weight = 5;
     tom.age = 2;

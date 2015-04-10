@@ -7,10 +7,10 @@
     </entity>
     <entity name="Cat" representedClassName="Cat" parentEntity="Animal" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mouse" inverseName="enemy" inverseEntity="Mouse" syncable="YES"/>
+        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mouse" inverseName="enemy" inverseEntity="Mouse" syncable="YES"/>
     </entity>
     <entity name="Mouse" representedClassName="Mouse" parentEntity="Animal" syncable="YES">
-        <relationship name="enemy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cat" inverseName="food" inverseEntity="Cat" syncable="YES"/>
+        <relationship name="enemy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cat" inverseName="foods" inverseEntity="Cat" syncable="YES"/>
     </entity>
     <elements>
         <element name="Animal" positionX="-72" positionY="-351" width="128" height="88"/>

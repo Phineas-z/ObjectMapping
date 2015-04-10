@@ -21,7 +21,7 @@
 		BFB1E1441AD70FFB00470EA6 /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1431AD70FFB00470EA6 /* Teacher.m */; };
 		BFC4A9981AD7533800C8EFC3 /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A9971AD7533800C8EFC3 /* Animal.m */; };
 		BFC4A99B1AD7533900C8EFC3 /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A99A1AD7533900C8EFC3 /* Mouse.m */; };
-		BFC4A99E1AD7533900C8EFC3 /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A99D1AD7533900C8EFC3 /* Cat.m */; };
+		BFC4A9A31AD75FFE00C8EFC3 /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A9A21AD75FFE00C8EFC3 /* Cat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +61,8 @@
 		BFC4A9971AD7533800C8EFC3 /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
 		BFC4A9991AD7533900C8EFC3 /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mouse.h; sourceTree = "<group>"; };
 		BFC4A99A1AD7533900C8EFC3 /* Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mouse.m; sourceTree = "<group>"; };
-		BFC4A99C1AD7533900C8EFC3 /* Cat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cat.h; sourceTree = "<group>"; };
-		BFC4A99D1AD7533900C8EFC3 /* Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cat.m; sourceTree = "<group>"; };
+		BFC4A9A11AD75FFE00C8EFC3 /* Cat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cat.h; sourceTree = "<group>"; };
+		BFC4A9A21AD75FFE00C8EFC3 /* Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +171,8 @@
 		BFC4A9951AD7532500C8EFC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BFC4A99C1AD7533900C8EFC3 /* Cat.h */,
-				BFC4A99D1AD7533900C8EFC3 /* Cat.m */,
+				BFC4A9A11AD75FFE00C8EFC3 /* Cat.h */,
+				BFC4A9A21AD75FFE00C8EFC3 /* Cat.m */,
 				BFC4A9991AD7533900C8EFC3 /* Mouse.h */,
 				BFC4A99A1AD7533900C8EFC3 /* Mouse.m */,
 				BFC4A9961AD7533800C8EFC3 /* Animal.h */,
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC4A99E1AD7533900C8EFC3 /* Cat.m in Sources */,
+				BFC4A9A31AD75FFE00C8EFC3 /* Cat.m in Sources */,
 				BFB1E1441AD70FFB00470EA6 /* Teacher.m in Sources */,
 				BFB1E1111AD704C400470EA6 /* AppDelegate.m in Sources */,
 				BFB1E1381AD7057400470EA6 /* NSObject+Mapping.m in Sources */,
