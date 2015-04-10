@@ -177,7 +177,7 @@
     // Nested array, need to read array-class mapping
     // to-many relationship
     if ([JSONObject isKindOfClass:[NSArray class]]) {
-        Class relationClass = [[self class] arrayClassMapping][propertyKey];
+        Class relationClass = [[self class] collectionClassMapping][propertyKey];
         if (relationClass) {
             return [relationClass instanceArrayWithJSONObject:JSONObject];
         }
@@ -240,7 +240,7 @@
 }
 
 // Customize this method to support to-many relationship
-+ (NSDictionary *)arrayClassMapping {
++ (NSDictionary *)collectionClassMapping {
     return @{};
 }
 

@@ -39,8 +39,9 @@
 + (NSArray *)instanceArrayWithJSONObject:(NSArray *)JSONObject;
 
 // PropertyKey: Class
+// Only for NSArray/NSSet property
 // Represent to-many relationship
-+ (NSDictionary *)arrayClassMapping;
++ (NSDictionary *)collectionClassMapping;
 
 + (NSString *)classNameOfProperty:(NSString *)propertyKey;
 

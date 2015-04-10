@@ -10,7 +10,7 @@
 
 @implementation Person
 
-+ (NSDictionary *)arrayClassMapping {
++ (NSDictionary *)collectionClassMapping {
     return @{@"children": [Person class]};
 }
 
