@@ -21,8 +21,12 @@
 // JSONKey: PropertyKey
 + (NSDictionary *)propertyDictionary;
 
++ (NSDate *)dateFromJSONValue:(NSNumber *)value;
+
++ (NSNumber *)JSONValueFromDate:(NSDate *)date;
+
 // Todo:
-// JSON data, JSON string, dictionary support, error handle
+// JSON data, JSON string, dictionary support, error handle, Class method call
 
 #pragma mark - JSON to Object
 
@@ -37,5 +41,7 @@
 // PropertyKey: Class
 // Represent to-many relationship
 + (NSDictionary *)arrayClassMapping;
+
++ (NSString *)classNameOfProperty:(NSString *)propertyKey;
 
 @end

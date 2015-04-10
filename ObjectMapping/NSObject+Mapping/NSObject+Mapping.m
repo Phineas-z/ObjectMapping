@@ -67,7 +67,7 @@
 
 + (NSDictionary *)propertyDictionary {
     // If called on NSObject class, return an empty dictionary
-    if (strcmp(class_getName(self), "NSObject") == 0) {
+    if ([self class] == [self rootClassForPropertyInherit]) {
         return @{};
     }
     
@@ -107,6 +107,10 @@
         NSAssert(NO, @"Never call primitive value on non-primitive object");
         return nil; // suppress compilor complaints
     }
+}
+
++ (Class)rootClassForPropertyInherit {
+    return [NSObject class];
 }
 
 // Todo

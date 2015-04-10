@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "Teacher.h"
+#import "Mouse.h"
+#import "Cat.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -19,34 +22,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    Teacher *dean = [[Teacher alloc] init];
-    dean.name = @"Ham";
-    dean.age = 50;
-    dean.children = @[];
-    dean.title = @"Dean";
-    dean.sex = MALE;
+    NSManagedObjectContext *moc = [(AppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
     
-    Person *son = [[Person alloc] init];
-    son.name = @"Son";
-    son.sex = MALE;
-    son.age = 14;
+    Cat *tom = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Cat class]) inManagedObjectContext:moc];
+    Mouse *jerry = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Mouse class]) inManagedObjectContext:moc];
     
-    Person *daughter = [[Person alloc] init];
-    daughter.name = @"Daughter";
-    daughter.sex = FEMALE;
-    daughter.age = 15;
+    jerry.age = 1;
+    jerry.predator = NO;
+    jerry.weight = .5;
     
-    Teacher *alice = [[Teacher alloc] init];
-    alice.name = @"Alice";
-    alice.age = 25;
-    alice.sex = FEMALE;
-    alice.title = @"Professor";
-    alice.children = @[son, daughter];
-    alice.dean = dean;
+    tom.food = jerry;
+    tom.name = @"Tom";
+    tom.weight = 5;
+    tom.age = 2;
+    tom.predator = YES;
     
-    NSDictionary *test = [alice JSONObject];
+    NSDictionary *test = [tom JSONObject];
     
-    Teacher *backTest = [Teacher instanceWithJSONObject:test];
+    Cat *tom2 = [Cat instanceWithJSONObject:test inContext:moc];
 }
 
 @end
