@@ -15,4 +15,8 @@
 @dynamic name;
 @dynamic foods;
 
++ (NSDictionary *)collectionClassMapping {
+    return @{@"foods": [Mouse class]};
+}
+
 @end

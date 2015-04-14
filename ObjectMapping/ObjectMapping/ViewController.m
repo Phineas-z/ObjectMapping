@@ -46,6 +46,8 @@
     NSDictionary *test = [tom JSONObject];
     
     Cat *tom2 = [Cat instanceWithJSONObject:test inContext:moc];
+    
+    [moc save:NULL];
 }
 
 @end

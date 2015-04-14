@@ -40,7 +40,8 @@
     if ([JSONObject isKindOfClass:[NSArray class]]) {
         Class relationClass = [[self class] collectionClassMapping][propertyKey];
         if (relationClass) {
-            return (id)[relationClass instanceArrayWithJSONObject:JSONObject inContext:context];
+            NSArray *objectArray = (id)[relationClass instanceArrayWithJSONObject:JSONObject inContext:context];
+            return [[[self class] classNameOfProperty:propertyKey] isEqualToString:@"NSSet"] ? (id)[NSSet setWithArray:objectArray] : objectArray;
         }
     }
     
