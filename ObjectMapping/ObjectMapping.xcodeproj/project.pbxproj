@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */; };
+		BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */; };
 		BFB1E10E1AD704C400470EA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E10D1AD704C400470EA6 /* main.m */; };
 		BFB1E1111AD704C400470EA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1101AD704C400470EA6 /* AppDelegate.m */; };
 		BFB1E1141AD704C400470EA6 /* ObjectMapping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1121AD704C400470EA6 /* ObjectMapping.xcdatamodeld */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectMappingTests.m; sourceTree = "<group>"; };
+		BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectMappingTests.m; sourceTree = "<group>"; };
 		BFB1E1081AD704C400470EA6 /* ObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB1E10C1AD704C400470EA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB1E10D1AD704C400470EA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 		BFB1E1271AD704C400470EA6 /* ObjectMappingTests */ = {
 			isa = PBXGroup;
 			children = (
+				BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */,
+				BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */,
 				BFB1E12A1AD704C400470EA6 /* ObjectMappingTests.m */,
 				BFB1E1281AD704C400470EA6 /* Supporting Files */,
 			);
@@ -299,7 +305,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */,
 				BFB1E12B1AD704C400470EA6 /* ObjectMappingTests.m in Sources */,
+				BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
