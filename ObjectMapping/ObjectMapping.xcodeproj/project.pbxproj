@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */; };
 		BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */; };
+		BF2009DB1ADCD9450081AA0D /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009DA1ADCD9450081AA0D /* Tool.m */; };
 		BFB1E10E1AD704C400470EA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E10D1AD704C400470EA6 /* main.m */; };
 		BFB1E1111AD704C400470EA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1101AD704C400470EA6 /* AppDelegate.m */; };
 		BFB1E1141AD704C400470EA6 /* ObjectMapping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1121AD704C400470EA6 /* ObjectMapping.xcdatamodeld */; };
@@ -19,8 +20,6 @@
 		BFB1E12B1AD704C400470EA6 /* ObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E12A1AD704C400470EA6 /* ObjectMappingTests.m */; };
 		BFB1E1381AD7057400470EA6 /* NSObject+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1371AD7057400470EA6 /* NSObject+Mapping.m */; };
 		BFB1E13B1AD7058600470EA6 /* NSManagedObject+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E13A1AD7058600470EA6 /* NSManagedObject+Mapping.m */; };
-		BFB1E13E1AD70ABB00470EA6 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E13D1AD70ABB00470EA6 /* Person.m */; };
-		BFB1E1441AD70FFB00470EA6 /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1431AD70FFB00470EA6 /* Teacher.m */; };
 		BFC4A9981AD7533800C8EFC3 /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A9971AD7533800C8EFC3 /* Animal.m */; };
 		BFC4A99B1AD7533900C8EFC3 /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A99A1AD7533900C8EFC3 /* Mouse.m */; };
 		BFC4A9A31AD75FFE00C8EFC3 /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A9A21AD75FFE00C8EFC3 /* Cat.m */; };
@@ -39,6 +38,8 @@
 /* Begin PBXFileReference section */
 		BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectMappingTests.m; sourceTree = "<group>"; };
 		BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectMappingTests.m; sourceTree = "<group>"; };
+		BF2009D91ADCD9450081AA0D /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
+		BF2009DA1ADCD9450081AA0D /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		BFB1E1081AD704C400470EA6 /* ObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB1E10C1AD704C400470EA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB1E10D1AD704C400470EA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,10 +58,6 @@
 		BFB1E1371AD7057400470EA6 /* NSObject+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Mapping.m"; sourceTree = "<group>"; };
 		BFB1E1391AD7058600470EA6 /* NSManagedObject+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Mapping.h"; sourceTree = "<group>"; };
 		BFB1E13A1AD7058600470EA6 /* NSManagedObject+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Mapping.m"; sourceTree = "<group>"; };
-		BFB1E13C1AD70ABB00470EA6 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		BFB1E13D1AD70ABB00470EA6 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		BFB1E1421AD70FFB00470EA6 /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
-		BFB1E1431AD70FFB00470EA6 /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
 		BFC4A9961AD7533800C8EFC3 /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
 		BFC4A9971AD7533800C8EFC3 /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
 		BFC4A9991AD7533900C8EFC3 /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mouse.h; sourceTree = "<group>"; };
@@ -87,6 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF2009D71ADCD6940081AA0D /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		BF2009D81ADCD6940081AA0D /* PlainObjects */ = {
+			isa = PBXGroup;
+			children = (
+				BF2009D91ADCD9450081AA0D /* Tool.h */,
+				BF2009DA1ADCD9450081AA0D /* Tool.m */,
+			);
+			path = PlainObjects;
+			sourceTree = "<group>";
+		};
 		BFB1E0FF1AD704C400470EA6 = {
 			isa = PBXGroup;
 			children = (
@@ -115,10 +128,6 @@
 				BFB1E1101AD704C400470EA6 /* AppDelegate.m */,
 				BFB1E1151AD704C400470EA6 /* ViewController.h */,
 				BFB1E1161AD704C400470EA6 /* ViewController.m */,
-				BFB1E13C1AD70ABB00470EA6 /* Person.h */,
-				BFB1E13D1AD70ABB00470EA6 /* Person.m */,
-				BFB1E1421AD70FFB00470EA6 /* Teacher.h */,
-				BFB1E1431AD70FFB00470EA6 /* Teacher.m */,
 				BFB1E1181AD704C400470EA6 /* Main.storyboard */,
 				BFB1E11B1AD704C400470EA6 /* Images.xcassets */,
 				BFB1E11D1AD704C400470EA6 /* LaunchScreen.xib */,
@@ -143,6 +152,8 @@
 				BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */,
 				BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */,
 				BFB1E12A1AD704C400470EA6 /* ObjectMappingTests.m */,
+				BF2009D71ADCD6940081AA0D /* CoreDataModel */,
+				BF2009D81ADCD6940081AA0D /* PlainObjects */,
 				BFB1E1281AD704C400470EA6 /* Supporting Files */,
 			);
 			path = ObjectMappingTests;
@@ -288,11 +299,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC4A9A31AD75FFE00C8EFC3 /* Cat.m in Sources */,
-				BFB1E1441AD70FFB00470EA6 /* Teacher.m in Sources */,
 				BFB1E1111AD704C400470EA6 /* AppDelegate.m in Sources */,
 				BFB1E1381AD7057400470EA6 /* NSObject+Mapping.m in Sources */,
 				BFC4A99B1AD7533900C8EFC3 /* Mouse.m in Sources */,
-				BFB1E13E1AD70ABB00470EA6 /* Person.m in Sources */,
 				BFB1E13B1AD7058600470EA6 /* NSManagedObject+Mapping.m in Sources */,
 				BFB1E10E1AD704C400470EA6 /* main.m in Sources */,
 				BFC4A9981AD7533800C8EFC3 /* Animal.m in Sources */,
@@ -308,6 +317,7 @@
 				BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */,
 				BFB1E12B1AD704C400470EA6 /* ObjectMappingTests.m in Sources */,
 				BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */,
+				BF2009DB1ADCD9450081AA0D /* Tool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

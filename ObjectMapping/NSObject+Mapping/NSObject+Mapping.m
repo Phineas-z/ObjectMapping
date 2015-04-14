@@ -121,13 +121,13 @@
     return [NSObject class];
 }
 
-// Todo
+// Default is linux time, could be overriden
 + (NSDate *)dateFromJSONValue:(NSNumber *)value {
-    return nil;
+    return [NSDate dateWithTimeIntervalSince1970:[value doubleValue]];
 }
 
 + (NSNumber *)JSONValueFromDate:(NSDate *)date {
-    return nil;
+    return [NSNumber numberWithDouble:[date timeIntervalSince1970]];
 }
 
 #pragma mark - JSON to Object
