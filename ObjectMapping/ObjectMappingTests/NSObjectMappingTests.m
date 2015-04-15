@@ -71,7 +71,7 @@
     XCTAssertEqualObjects(clonedFirstTool.name, name, @"name not match");
     XCTAssertEqual(clonedFirstTool.speed, speed, @"speed not match");
     XCTAssertEqualObjects(clonedFirstTool.durability, durability, @"durability not match");
-    XCTAssertTrue([clonedFirstTool.createdDate isEqualToDate:createdDate], @"date not match");
+    XCTAssertEqual([clonedFirstTool.createdDate timeIntervalSince1970], [createdDate timeIntervalSince1970], @"date not match");
     XCTAssertEqual(clonedFirstTool.isNew, isNew, @"isNew not match");
 }
 

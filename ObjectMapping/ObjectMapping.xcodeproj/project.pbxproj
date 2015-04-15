@@ -10,6 +10,8 @@
 		BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */; };
 		BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */; };
 		BF2009DB1ADCD9450081AA0D /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009DA1ADCD9450081AA0D /* Tool.m */; };
+		BF3F6B561ADDF40000382CB2 /* NSManagedObject+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3F6B521ADDF40000382CB2 /* NSManagedObject+Mapping.m */; };
+		BF3F6B571ADDF40000382CB2 /* NSObject+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3F6B551ADDF40000382CB2 /* NSObject+Mapping.m */; };
 		BFB1E10E1AD704C400470EA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E10D1AD704C400470EA6 /* main.m */; };
 		BFB1E1111AD704C400470EA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1101AD704C400470EA6 /* AppDelegate.m */; };
 		BFB1E1141AD704C400470EA6 /* ObjectMapping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1121AD704C400470EA6 /* ObjectMapping.xcdatamodeld */; };
@@ -18,11 +20,6 @@
 		BFB1E11C1AD704C400470EA6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB1E11B1AD704C400470EA6 /* Images.xcassets */; };
 		BFB1E11F1AD704C400470EA6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB1E11D1AD704C400470EA6 /* LaunchScreen.xib */; };
 		BFB1E12B1AD704C400470EA6 /* ObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E12A1AD704C400470EA6 /* ObjectMappingTests.m */; };
-		BFB1E1381AD7057400470EA6 /* NSObject+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E1371AD7057400470EA6 /* NSObject+Mapping.m */; };
-		BFB1E13B1AD7058600470EA6 /* NSManagedObject+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB1E13A1AD7058600470EA6 /* NSManagedObject+Mapping.m */; };
-		BFC4A9981AD7533800C8EFC3 /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A9971AD7533800C8EFC3 /* Animal.m */; };
-		BFC4A99B1AD7533900C8EFC3 /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A99A1AD7533900C8EFC3 /* Mouse.m */; };
-		BFC4A9A31AD75FFE00C8EFC3 /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC4A9A21AD75FFE00C8EFC3 /* Cat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +37,10 @@
 		BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectMappingTests.m; sourceTree = "<group>"; };
 		BF2009D91ADCD9450081AA0D /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		BF2009DA1ADCD9450081AA0D /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
+		BF3F6B511ADDF40000382CB2 /* NSManagedObject+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Mapping.h"; sourceTree = "<group>"; };
+		BF3F6B521ADDF40000382CB2 /* NSManagedObject+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Mapping.m"; sourceTree = "<group>"; };
+		BF3F6B541ADDF40000382CB2 /* NSObject+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Mapping.h"; sourceTree = "<group>"; };
+		BF3F6B551ADDF40000382CB2 /* NSObject+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Mapping.m"; sourceTree = "<group>"; };
 		BFB1E1081AD704C400470EA6 /* ObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB1E10C1AD704C400470EA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB1E10D1AD704C400470EA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,16 +55,6 @@
 		BFB1E1241AD704C400470EA6 /* ObjectMappingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectMappingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB1E1291AD704C400470EA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB1E12A1AD704C400470EA6 /* ObjectMappingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectMappingTests.m; sourceTree = "<group>"; };
-		BFB1E1361AD7057400470EA6 /* NSObject+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Mapping.h"; sourceTree = "<group>"; };
-		BFB1E1371AD7057400470EA6 /* NSObject+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Mapping.m"; sourceTree = "<group>"; };
-		BFB1E1391AD7058600470EA6 /* NSManagedObject+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Mapping.h"; sourceTree = "<group>"; };
-		BFB1E13A1AD7058600470EA6 /* NSManagedObject+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Mapping.m"; sourceTree = "<group>"; };
-		BFC4A9961AD7533800C8EFC3 /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
-		BFC4A9971AD7533800C8EFC3 /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
-		BFC4A9991AD7533900C8EFC3 /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mouse.h; sourceTree = "<group>"; };
-		BFC4A99A1AD7533900C8EFC3 /* Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mouse.m; sourceTree = "<group>"; };
-		BFC4A9A11AD75FFE00C8EFC3 /* Cat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cat.h; sourceTree = "<group>"; };
-		BFC4A9A21AD75FFE00C8EFC3 /* Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +91,31 @@
 			path = PlainObjects;
 			sourceTree = "<group>";
 		};
+		BF3F6B501ADDF40000382CB2 /* NSManagedObject+Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				BF3F6B511ADDF40000382CB2 /* NSManagedObject+Mapping.h */,
+				BF3F6B521ADDF40000382CB2 /* NSManagedObject+Mapping.m */,
+			);
+			name = "NSManagedObject+Mapping";
+			path = "../NSManagedObject+Mapping";
+			sourceTree = "<group>";
+		};
+		BF3F6B531ADDF40000382CB2 /* NSObject+Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				BF3F6B541ADDF40000382CB2 /* NSObject+Mapping.h */,
+				BF3F6B551ADDF40000382CB2 /* NSObject+Mapping.m */,
+			);
+			name = "NSObject+Mapping";
+			path = "../NSObject+Mapping";
+			sourceTree = "<group>";
+		};
 		BFB1E0FF1AD704C400470EA6 = {
 			isa = PBXGroup;
 			children = (
-				BFC4A9951AD7532500C8EFC3 /* Model */,
-				BFB1E1341AD7053D00470EA6 /* NSManagedObject+Mapping */,
-				BFB1E1351AD7053D00470EA6 /* NSObject+Mapping */,
+				BF3F6B501ADDF40000382CB2 /* NSManagedObject+Mapping */,
+				BF3F6B531ADDF40000382CB2 /* NSObject+Mapping */,
 				BFB1E10A1AD704C400470EA6 /* ObjectMapping */,
 				BFB1E1271AD704C400470EA6 /* ObjectMappingTests */,
 				BFB1E1091AD704C400470EA6 /* Products */,
@@ -165,37 +175,6 @@
 				BFB1E1291AD704C400470EA6 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BFB1E1341AD7053D00470EA6 /* NSManagedObject+Mapping */ = {
-			isa = PBXGroup;
-			children = (
-				BFB1E1391AD7058600470EA6 /* NSManagedObject+Mapping.h */,
-				BFB1E13A1AD7058600470EA6 /* NSManagedObject+Mapping.m */,
-			);
-			path = "NSManagedObject+Mapping";
-			sourceTree = "<group>";
-		};
-		BFB1E1351AD7053D00470EA6 /* NSObject+Mapping */ = {
-			isa = PBXGroup;
-			children = (
-				BFB1E1361AD7057400470EA6 /* NSObject+Mapping.h */,
-				BFB1E1371AD7057400470EA6 /* NSObject+Mapping.m */,
-			);
-			path = "NSObject+Mapping";
-			sourceTree = "<group>";
-		};
-		BFC4A9951AD7532500C8EFC3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BFC4A9A11AD75FFE00C8EFC3 /* Cat.h */,
-				BFC4A9A21AD75FFE00C8EFC3 /* Cat.m */,
-				BFC4A9991AD7533900C8EFC3 /* Mouse.h */,
-				BFC4A99A1AD7533900C8EFC3 /* Mouse.m */,
-				BFC4A9961AD7533800C8EFC3 /* Animal.h */,
-				BFC4A9971AD7533800C8EFC3 /* Animal.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,15 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC4A9A31AD75FFE00C8EFC3 /* Cat.m in Sources */,
 				BFB1E1111AD704C400470EA6 /* AppDelegate.m in Sources */,
-				BFB1E1381AD7057400470EA6 /* NSObject+Mapping.m in Sources */,
-				BFC4A99B1AD7533900C8EFC3 /* Mouse.m in Sources */,
-				BFB1E13B1AD7058600470EA6 /* NSManagedObject+Mapping.m in Sources */,
 				BFB1E10E1AD704C400470EA6 /* main.m in Sources */,
-				BFC4A9981AD7533800C8EFC3 /* Animal.m in Sources */,
 				BFB1E1171AD704C400470EA6 /* ViewController.m in Sources */,
 				BFB1E1141AD704C400470EA6 /* ObjectMapping.xcdatamodeld in Sources */,
+				BF3F6B571ADDF40000382CB2 /* NSObject+Mapping.m in Sources */,
+				BF3F6B561ADDF40000382CB2 /* NSManagedObject+Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
