@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-// Todo:
-// JSON data, JSON string, dictionary support, error handle, Class method call
-
 @interface NSObject (Mapping)
 
 #pragma mark - Object to JSON
