@@ -13,7 +13,7 @@
  NSManagedObject+Mapping has dependency on NSObject+Mapping. Extra work include:
  1. add NSManagedObjectContext as interface parameter
  2. support NSSet for to-many relationship
- 3. support updating existing entities
+ 3. support option to update existing entities
  */
 
 @interface NSManagedObject (Mapping)

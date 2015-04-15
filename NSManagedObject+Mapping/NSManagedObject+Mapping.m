@@ -34,12 +34,23 @@
  Insert or update an entity with JSON dictionary.
  */
 + (instancetype)entityWithJSONObject:(NSDictionary *)JSONObject inContext:(NSManagedObjectContext *)context {
-    // Create a new object
-    id newObject = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self) inManagedObjectContext:context];
+    NSManagedObject *entity = nil;
     
-    [newObject updateWithJSONObject:JSONObject inContext:context];
+    // Check if there are existing lookup properties
+    if ([self lookupProperties] && [self lookupProperties].count > 0) {
+        // Try to find existing entity by lookup properties
+        entity = [self fetchEntityWithJSON:JSONObject
+                                 inContext:context];
+    }
     
-    return newObject;
+    if (!entity) {
+        // Create a new entity if needed
+        entity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self) inManagedObjectContext:context];
+    }
+    
+    [entity updateWithJSONObject:JSONObject inContext:context];
+    
+    return entity;
 }
 
 /*
@@ -146,6 +157,54 @@
 }
 
 #pragma mark - Utils
+
+/*
+ Fetch existing entity with JSON and lookup properties.
+ */
++ (NSManagedObject *)fetchEntityWithJSON:(NSDictionary *)JSONobject
+                               inContext:(NSManagedObjectContext *)context {
+    // Get reversed propertyDictionary, which maps from propertyKey to JSONKey
+    NSDictionary *reversedPropertyDictionary = [self reverseDictionary:[self propertyDictionary]];
+    
+    // Try lookupProperties one by one
+    for (NSString *propertyKey in [self lookupProperties]) {
+        NSString *jsonKey = reversedPropertyDictionary[propertyKey];
+        
+        id jsonValue = JSONobject[jsonKey];
+        
+        if (!jsonValue) {
+            continue;
+        }
+        
+        // Create a fetch request
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([self class])];
+        fetchRequest.fetchLimit = 1; // only find one
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K = %@", propertyKey, jsonValue];
+        
+        // Execute fetch
+        NSError *error = nil;
+        NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+        
+        if (!error && results && results.lastObject) {
+            return results.lastObject;
+        }
+    }
+    
+    return nil;
+}
+
+/*
+ Reverse the key/value of dictionary.
+ */
++ (NSDictionary *)reverseDictionary:(NSDictionary *)dict {
+    NSMutableDictionary *reversedDict = [NSMutableDictionary dictionary];
+    
+    for (id key in dict) {
+        reversedDict[dict[key]] = key;
+    }
+    
+    return reversedDict;
+}
 
 // This method will be called to decide which properties to be inherited in default property dictionary
 + (Class)inheritBoundary {
