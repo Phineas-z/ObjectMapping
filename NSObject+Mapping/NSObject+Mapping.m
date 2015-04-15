@@ -13,6 +13,10 @@
 
 #pragma mark - Object to JSON
 
+/*
+ For NSArray and NSSet, need to return an array as JSON object. Both NSArray and NSSet are treated
+ as any to-many relationship.
+ */
 - (instancetype)JSONObject {
     // Returned JSON value could be array/dictionary
     // Support NSArray for to-many relationship
@@ -30,11 +34,6 @@
         
         return [NSArray arrayWithArray:jsonObject];
         
-    }
-    
-    // Support NSSet for to-many relationship, which is required by NSManagedObject
-    else if ([self isKindOfClass:[NSSet class]]) {
-        return [[(NSSet*)self allObjects] JSONObject];
     }
     
     // Single object
@@ -57,6 +56,9 @@
     }
 }
 
+/*
+ For each property in an object, return the desired JSON value
+ */
 - (instancetype)JSONValueForPropertyKey:(NSString *)propertyKey {
     id propertyValue = [self valueForKey:propertyKey];
     
@@ -73,13 +75,17 @@
     }
 }
 
+/*
+ Return all the properties until inherit boundary (not included).
+ The default dictionary key and value are all property name.
+ */
 + (NSDictionary *)propertyDictionary {
     // If called on NSObject class, return an empty dictionary
-    if ([self class] == [self rootClassForPropertyInherit]) {
+    if ([self class] == [self inheritBoundary]) {
         return @{};
     }
     
-    // Add properties of Self
+    // Add properties of self
     NSMutableDictionary *propertyDictionary = [NSMutableDictionary dictionary];
     
     unsigned int count;
@@ -93,45 +99,36 @@
     
     // Should inherit properties from super class
     // Merge property dictionary from super class
-    [propertyDictionary addEntriesFromDictionary:[class_getSuperclass(self) propertyDictionary]];
+    [propertyDictionary addEntriesFromDictionary:[[self superclass] propertyDictionary]];
     
     // Return the Dict
     return [NSDictionary dictionaryWithDictionary:propertyDictionary];
 }
 
-+ (BOOL)isPrimitiveType:(id)object {
-    return [object isKindOfClass:[NSString class]]
-        || [object isKindOfClass:[NSNumber class]]
-        || [object isKindOfClass:[NSDate class]];
-}
-
-// String/Number/Date, object -> json
-+ (instancetype)primitiveValueWithObject:(id)object {
-    if ([object isKindOfClass:[NSString class]] || [object isKindOfClass:[NSNumber class]]) {
-        return object;
-    } else if ([object isKindOfClass:[NSDate class]]) {
-        return [NSObject JSONValueFromDate:object];
-    } else {
-        NSAssert(NO, @"Never call primitive value on non-primitive object");
-        return nil; // suppress compilor complaints
-    }
-}
-
-+ (Class)rootClassForPropertyInherit {
-    return [NSObject class];
-}
-
-// Default is linux time, could be overriden
-+ (NSDate *)dateFromJSONValue:(NSNumber *)value {
-    return [NSDate dateWithTimeIntervalSince1970:[value doubleValue]];
-}
-
-+ (NSNumber *)JSONValueFromDate:(NSDate *)date {
-    return [NSNumber numberWithDouble:[date timeIntervalSince1970]];
-}
-
 #pragma mark - JSON to Object
 
+// Create a new instance with JSON object
++ (instancetype)instanceWithJSONObject:(NSDictionary *)JSONObject {
+    // Create a new object
+    id newObject = [[self alloc] init];
+    
+    [newObject updateWithJSONObject:JSONObject];
+    
+    return newObject;
+}
+
+// Create an array of instances with JSON object, which has to be an array
++ (NSArray *)instanceArrayWithJSONObject:(NSArray *)JSONObject {
+    NSMutableArray *instanceArray = [NSMutableArray array];
+    
+    for (id arrayItem in JSONObject) {
+        [instanceArray addObject:[self instanceWithJSONObject:arrayItem]];
+    }
+    
+    return [NSArray arrayWithArray:instanceArray];
+}
+
+// Update properties of an instance with JSON object
 - (void)updateWithJSONObject:(NSDictionary *)JSONObject {
     // Iterate property dictionary
     NSDictionary *propertyDictionary = [[self class] propertyDictionary];
@@ -145,7 +142,7 @@
             continue;
         }
         
-        id propertyValue = [self propertyValueForPropertyKey:propertyKey withJSONObject:jsonValue];
+        id propertyValue = [self propertyValueForPropertyKey:propertyKey withJSONValue:jsonValue];
         
         if (propertyValue) {
             [self setValue:propertyValue forKey:propertyKey];
@@ -153,38 +150,19 @@
     }
 }
 
-+ (instancetype)instanceWithJSONObject:(NSDictionary *)JSONObject {
-    // Create a new object
-    id newObject = [[self alloc] init];
-    
-    [newObject updateWithJSONObject:JSONObject];
-    
-    return newObject;
-}
-
-+ (NSArray *)instanceArrayWithJSONObject:(NSArray *)JSONObject {
-    NSMutableArray *instanceArray = [NSMutableArray array];
-    
-    for (id arrayItem in JSONObject) {
-        [instanceArray addObject:[self instanceWithJSONObject:arrayItem]];
-    }
-    
-    return [NSArray arrayWithArray:instanceArray];
-}
-
+// For each property in an object, return property value from JSON value
 - (instancetype)propertyValueForPropertyKey:(NSString *)propertyKey
-                             withJSONObject:(id)JSONObject {
-    // Nested array, need to read array-class mapping
-    // to-many relationship
+                             withJSONValue:(id)JSONObject {
+    // Nested array indicates to-many relationship.
+    // Need to read arrayClassMapping to find out what objects should be created in array
     if ([JSONObject isKindOfClass:[NSArray class]]) {
-        Class relationClass = [[self class] collectionClassMapping][propertyKey];
+        Class relationClass = [[self class] arrayClassMapping][propertyKey];
         if (relationClass) {
             return [relationClass instanceArrayWithJSONObject:JSONObject];
         }
     }
     
-    // Nested object
-    // to-one relationship
+    // Nested object indicates to-one relationship
     else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
         NSString *className = [[self class] classNameOfProperty:propertyKey];
         if (className) {
@@ -192,9 +170,9 @@
         }
     }
     
-    // Plain String/Number/Bool, correspond to String/Number/Date, i.e. primitive type
+    // Primitive JSON type
     else {
-        // Need to check property class/type, if it is special case (date), need to do conversion
+        // Need to check property class, if it is special case (date), need to do conversion
         NSString *className = [[self class] classNameOfProperty:propertyKey];
         if ([className isEqualToString:@"NSDate"]) {
             return [NSObject dateFromJSONValue:JSONObject];
@@ -207,6 +185,14 @@
     return nil;
 }
 
+// Customize this method to support to-many relationship, default empty dictionary
++ (NSDictionary *)arrayClassMapping {
+    return @{};
+}
+
+#pragma mark - Utils
+
+// Get class name of a specific property
 + (NSString *)classNameOfProperty:(NSString *)propertyKey {
     objc_property_t theProperty = class_getProperty(self, [propertyKey UTF8String]);
     
@@ -239,9 +225,37 @@
     return @"";
 }
 
-// Customize this method to support to-many relationship
-+ (NSDictionary *)collectionClassMapping {
-    return @{};
+// Check if an object is String/Number/Date
++ (BOOL)isPrimitiveType:(id)object {
+    return [object isKindOfClass:[NSString class]]
+    || [object isKindOfClass:[NSNumber class]]
+    || [object isKindOfClass:[NSDate class]];
+}
+
+// Map String/Number/Date to JSON value
++ (instancetype)primitiveValueWithObject:(id)object {
+    if ([object isKindOfClass:[NSString class]] || [object isKindOfClass:[NSNumber class]]) {
+        return object;
+    } else if ([object isKindOfClass:[NSDate class]]) {
+        return [NSObject JSONValueFromDate:object];
+    } else {
+        NSAssert(NO, @"Never call primitive value on non-primitive object");
+        return nil; // suppress compilor complaints
+    }
+}
+
+// Indicate the inherit boundary below which object inherits properties
++ (Class)inheritBoundary {
+    return [NSObject class];
+}
+
+// Default is linux time, could be overriden
++ (NSDate *)dateFromJSONValue:(NSNumber *)value {
+    return [NSDate dateWithTimeIntervalSince1970:[value doubleValue]];
+}
+
++ (NSNumber *)JSONValueFromDate:(NSDate *)date {
+    return [NSNumber numberWithDouble:[date timeIntervalSince1970]];
 }
 
 @end
