@@ -170,7 +170,7 @@
     // Nested object indicates to-one relationship
     else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
         NSString *className = [[self class] classNameOfProperty:propertyKey];
-        if (className) {
+        if (className && ![className isEqualToString:NSStringFromClass([NSDictionary class])]) { // no support for NSDictionary
             return [NSClassFromString(className) instanceWithJSONObject:JSONObject];
         }
     }

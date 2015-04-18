@@ -251,11 +251,15 @@
  */
 
 - (void)testDictionaryProperty {
-    // We should not support dictionary porperty!
+    // We should not support dictionary porperty in both direction!
     
     // Create a sword, which is a subclass of tool
     Sword *sword = [[Sword alloc] init];
     sword.damage = @11;
+    sword.name = @"Sword";
+    sword.speed = 24;
+    sword.durability = @44;
+    sword.isNew = @YES;
     sword.userInfo = @{
                        @"sharpness": @22
                        };
@@ -266,13 +270,20 @@
     // Verify swordJSON
     NSDictionary *groundTruth = @{
                                   @"damage": @11,
-                                  @"speed": @0, // default value
-                                  @"isNew": @NO // default value
+                                  @"name": @"Sword",
+                                  @"speed": @24,
+                                  @"durability": @44,
+                                  @"isNew": @YES
                                   };
     
     XCTAssertTrue([swordJSON isEqualToDictionary:groundTruth], @"Object to JSON mapping incorrect");
     
     // JSON to Object
+    // Add userInfo dictionary into JSON object, and JSON to Object should ignore the dictionary
+    NSMutableDictionary *jsonWithDictionaryProperty = [NSMutableDictionary dictionaryWithDictionary:swordJSON];
+    [jsonWithDictionaryProperty addEntriesFromDictionary:@{@"userInfo": @{@"sharpness": @22}}];
+    swordJSON = [NSDictionary dictionaryWithDictionary:jsonWithDictionaryProperty];
+    
     Sword *clonedSword = [Sword instanceWithJSONObject:swordJSON];
     
     // Verify clonedSword
