@@ -108,8 +108,4 @@
 
 + (NSString *)classNameOfProperty:(NSString *)propertyKey;
 
-+ (NSDate *)dateFromJSONValue:(NSNumber *)value;
-
-+ (NSNumber *)JSONValueFromDate:(NSDate *)date;
-
 @end

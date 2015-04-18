@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "Tool.h"
+#import "Survivor.h"
+#import "Sword.h"
 
 /**
  * The classes used to test is from the scenario of MineCraft game, and also
@@ -30,49 +32,266 @@
     [super tearDown];
 }
 
-/**
- * Basic test for NSObject+Mapping, the test object only have primitive JSON type properties
+/*
+ Test mapping object which only has primitive JSON type properties. Test both object to JSON and reverse.
  */
 
 - (void)testPrimitiveJSONTypes {
     // Create a tool object
     Tool *firstTool = [[Tool alloc] init];
     
-    // Define attributes
-    NSString *name = @"Stick";
-    float speed = 34.5;
-    NSNumber *durability = @20;
-    NSDate *createdDate = [NSDate date];
-    BOOL isNew = YES;
-    
-    // Assign value to object properties
-    firstTool.name = name;
-    firstTool.speed = speed;
-    firstTool.durability = durability;
-    firstTool.createdDate = createdDate;
-    firstTool.isNew = isNew;
+    firstTool.name = @"Stick";
+    firstTool.speed = 34;
+    firstTool.durability = @20;
+    firstTool.isNew = YES;
     
     // Object -> JSON
     NSDictionary *JSONObject =  (NSDictionary*)[firstTool JSONObject];
     
     // Verify JSONObject has and only has corresponding correct key/value pairs
-    XCTAssertEqualObjects(JSONObject[@"name"], name, @"name not match");
-    XCTAssertEqualObjects(JSONObject[@"speed"], [NSNumber numberWithFloat:speed], @"speed not match");
-    XCTAssertEqualObjects(JSONObject[@"durability"], durability, @"durability not match");
-    XCTAssertEqualObjects(JSONObject[@"createdDate"], [Tool JSONValueFromDate:createdDate], @"date not match");
-    XCTAssertEqualObjects(JSONObject[@"isNew"], [NSNumber numberWithBool:isNew], @"isNew not match");
+    XCTAssertEqualObjects(JSONObject[@"name"], firstTool.name, @"name not match");
+    XCTAssertEqualObjects(JSONObject[@"speed"], [NSNumber numberWithFloat:firstTool.speed], @"speed not match");
+    XCTAssertEqualObjects(JSONObject[@"durability"], firstTool.durability, @"durability not match");
+    XCTAssertEqualObjects(JSONObject[@"isNew"], [NSNumber numberWithBool:firstTool.isNew], @"isNew not match");
     // Only have corresponding keys
-    XCTAssertEqual([JSONObject allKeys].count, 5, @"json key not mapping to properties");
+    XCTAssertEqual([JSONObject allKeys].count, 4, @"json key not mapping to properties");
     
     // JSON -> Object
     Tool *clonedFirstTool = [Tool instanceWithJSONObject:JSONObject];
     
     // Verify clonedFirstTool has and only has corresponding correct properties
-    XCTAssertEqualObjects(clonedFirstTool.name, name, @"name not match");
-    XCTAssertEqual(clonedFirstTool.speed, speed, @"speed not match");
-    XCTAssertEqualObjects(clonedFirstTool.durability, durability, @"durability not match");
-    XCTAssertEqual([clonedFirstTool.createdDate timeIntervalSince1970], [createdDate timeIntervalSince1970], @"date not match");
-    XCTAssertEqual(clonedFirstTool.isNew, isNew, @"isNew not match");
+    XCTAssertTrue([clonedFirstTool isEqual:firstTool], @"Tool mapped from JSON not match");
 }
+
+/*
+ Test mapping object with to-one relationships
+ */
+
+- (void)testToOneRelationship {
+    // Create a tool object
+    Tool *axe = [[Tool alloc] init];
+    
+    axe.name = @"Axe";
+    axe.speed = 20;
+    axe.durability = @24;
+    axe.isNew = NO;
+    
+    // Create a survivor
+    Survivor *survivor = [[Survivor alloc] init];
+    survivor.name = @"Jerry";
+    survivor.favoriteTool = axe;
+    
+    // Object -> JSON
+    NSDictionary *JSONObject = (NSDictionary*)[survivor JSONObject];
+    
+    // Verify JSON
+    XCTAssertEqual(JSONObject[@"name"], survivor.name, @"name not match");
+    XCTAssertTrue([JSONObject[@"favoriteTool"] isEqualToDictionary:(NSDictionary*)[axe JSONObject]], @"favriteTool not match");
+    
+    // JSON -> Object
+    Survivor *clonedSurvivor = [Survivor instanceWithJSONObject:JSONObject];
+    
+    // Verify clonedSurvivor
+    XCTAssertTrue([clonedSurvivor isEqual:survivor], @"Survivor mapped from JSON not match");
+}
+
+/*
+ Test mapping object with to-many relationships
+*/
+
+- (void)testToManyRelationship {
+    // Create tools
+    Tool *axe = [[Tool alloc] init];
+    axe.name = @"Axe";
+    axe.speed = 20;
+    axe.durability = @24;
+    axe.isNew = NO;
+    
+    Tool *stick = [[Tool alloc] init];
+    stick.name = @"Stick";
+    stick.speed = 34;
+    stick.durability = @20;
+    stick.isNew = YES;
+    
+    // Create survivor with to-many relationships to tool
+    Survivor *survivor = [[Survivor alloc] init];
+    survivor.favoriteTool = axe;
+    survivor.tools = @[axe, stick];
+    survivor.name = @"Jerry";
+    
+    // Object to JSON
+    NSDictionary *survivorJSON = (NSDictionary*)[survivor JSONObject];
+
+    // Verity survivorJSON
+    NSDictionary *groundTruth = @{
+                                  @"name": @"Jerry",
+                                  @"favoriteTool": @{
+                                        @"name": @"Axe",
+                                        @"speed": @20,
+                                        @"durability": @24,
+                                        @"isNew": @NO
+                                    },
+                                  @"tools": @[
+                                          @{
+                                              @"name": @"Axe",
+                                              @"speed": @20,
+                                              @"durability": @24,
+                                              @"isNew": @NO
+                                              },
+                                          @{
+                                              @"name": @"Stick",
+                                              @"speed": @34,
+                                              @"durability": @20,
+                                              @"isNew": @YES
+                                              }
+                                    ]
+                                  };
+    
+    XCTAssertTrue([survivorJSON isEqualToDictionary:groundTruth], @"JSON mapping incorrect");
+    
+    // JSON -> Object
+    Survivor *clonedSurvivor = [Survivor instanceWithJSONObject:survivorJSON];
+    
+    // Verify clonedSurvivor
+    XCTAssertTrue([clonedSurvivor isEqual:survivor], @"Survivor mapped from JSON incorrect");
+}
+
+/*
+ Test property inheritance
+ */
+
+- (void)testPropertyInheritance {
+    // Create a sword, which is a subclass of tool
+    Sword *sword = [[Sword alloc] init];
+    sword.damage = @11;
+    sword.name = @"Sword";
+    sword.speed = 24;
+    sword.durability = @44;
+    sword.isNew = @YES;
+    
+    // Object to JSON
+    NSDictionary *swordJSON = (NSDictionary*)[sword JSONObject];
+    
+    // Verify swordJSON
+    NSDictionary *groundTruth = @{
+                                  @"damage": @11,
+                                  @"name": @"Sword",
+                                  @"speed": @24,
+                                  @"durability": @44,
+                                  @"isNew": @YES
+                                  };
+    
+    XCTAssertTrue([swordJSON isEqualToDictionary:groundTruth], @"Object to JSON mapping incorrect");
+    
+    // JSON to Object
+    Sword *clonedSword = [Sword instanceWithJSONObject:swordJSON];
+    
+    // Verify clonedSword
+    XCTAssertTrue([clonedSword isEqual:sword], @"JSON to Object mapping incorrect");
+}
+
+/*
+ Test mapping of NSArray
+ */
+
+- (void)testArrayMapping {
+    // Create tools
+    Tool *axe = [[Tool alloc] init];
+    axe.name = @"Axe";
+    axe.speed = 20;
+    axe.durability = @24;
+    axe.isNew = NO;
+    
+    Tool *stick = [[Tool alloc] init];
+    stick.name = @"Stick";
+    stick.speed = 34;
+    stick.durability = @20;
+    stick.isNew = YES;
+    
+    NSArray *tools = @[stick, axe];
+    
+    // Object ot JSON
+    NSArray *toolsJSON = [tools JSONObject];
+    
+    // Verity toolsJSON
+    NSArray *groundTruth = @[
+                             @{
+                                 @"name": @"Stick",
+                                 @"speed": @34,
+                                 @"durability": @20,
+                                 @"isNew": @YES
+                                 },
+                             @{
+                                 @"name": @"Axe",
+                                 @"speed": @20,
+                                 @"durability": @24,
+                                 @"isNew": @NO
+                                 }
+                             ];
+
+    XCTAssertTrue([toolsJSON isEqualToArray:groundTruth], @"Object to JSON mapping incorrect");
+    
+    // JSON to Object
+    NSArray *clonedTools = [Tool instanceArrayWithJSONObject:toolsJSON];
+    
+    // Verify clonedTools
+    XCTAssertTrue([clonedTools isEqualToArray:tools], @"JSON to Object mapping incorrect");
+}
+
+/*
+ Test customize JSON key name
+ */
+
+/*
+ Test intercept a specific property mapping
+ */
+
+/*
+ Test mapping object with NSDictionary property
+ */
+
+- (void)testDictionaryProperty {
+    // We should not support dictionary porperty!
+    
+    // Create a sword, which is a subclass of tool
+    Sword *sword = [[Sword alloc] init];
+    sword.damage = @11;
+    sword.userInfo = @{
+                       @"sharpness": @22
+                       };
+    
+    // Object to JSON
+    NSDictionary *swordJSON = (NSDictionary*)[sword JSONObject];
+    
+    // Verify swordJSON
+    NSDictionary *groundTruth = @{
+                                  @"damage": @11,
+                                  @"speed": @0, // default value
+                                  @"isNew": @NO // default value
+                                  };
+    
+    XCTAssertTrue([swordJSON isEqualToDictionary:groundTruth], @"Object to JSON mapping incorrect");
+    
+    // JSON to Object
+    Sword *clonedSword = [Sword instanceWithJSONObject:swordJSON];
+    
+    // Verify clonedSword
+    XCTAssertFalse([clonedSword isEqual:sword], @"JSON to Object mapping incorrect");
+    sword.userInfo = nil;
+    XCTAssertTrue([clonedSword isEqual:sword], @"JSON to Object mapping incorrect");
+}
+
+/*
+ Test mapping object with NSSet property
+ */
+
+/*
+ Test date mapping
+ */
+
+/*
+ Test float value
+ */
+
 
 @end

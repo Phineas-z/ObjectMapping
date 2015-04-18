@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF1639591AE1BA5600DE19B6 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1639581AE1BA5600DE19B6 /* Survivor.m */; };
+		BF16395C1AE1D3D400DE19B6 /* Sword.m in Sources */ = {isa = PBXBuildFile; fileRef = BF16395B1AE1D3D400DE19B6 /* Sword.m */; };
 		BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */; };
 		BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */; };
 		BF2009DB1ADCD9450081AA0D /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009DA1ADCD9450081AA0D /* Tool.m */; };
@@ -33,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF1639571AE1BA5600DE19B6 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
+		BF1639581AE1BA5600DE19B6 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
+		BF16395A1AE1D3D400DE19B6 /* Sword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sword.h; sourceTree = "<group>"; };
+		BF16395B1AE1D3D400DE19B6 /* Sword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sword.m; sourceTree = "<group>"; };
 		BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectMappingTests.m; sourceTree = "<group>"; };
 		BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectMappingTests.m; sourceTree = "<group>"; };
 		BF2009D91ADCD9450081AA0D /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
@@ -87,6 +93,10 @@
 			children = (
 				BF2009D91ADCD9450081AA0D /* Tool.h */,
 				BF2009DA1ADCD9450081AA0D /* Tool.m */,
+				BF16395A1AE1D3D400DE19B6 /* Sword.h */,
+				BF16395B1AE1D3D400DE19B6 /* Sword.m */,
+				BF1639571AE1BA5600DE19B6 /* Survivor.h */,
+				BF1639581AE1BA5600DE19B6 /* Survivor.m */,
 			);
 			path = PlainObjects;
 			sourceTree = "<group>";
@@ -290,8 +300,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1639591AE1BA5600DE19B6 /* Survivor.m in Sources */,
 				BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */,
 				BFB1E12B1AD704C400470EA6 /* ObjectMappingTests.m in Sources */,
+				BF16395C1AE1D3D400DE19B6 /* Sword.m in Sources */,
 				BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */,
 				BF2009DB1ADCD9450081AA0D /* Tool.m in Sources */,
 			);

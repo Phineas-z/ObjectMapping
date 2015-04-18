@@ -13,11 +13,9 @@
 
 @property (nonatomic, strong) NSString *name;
 
-@property (nonatomic) float speed;
+@property (nonatomic) int speed;
 
 @property (nonatomic, strong) NSNumber *durability;
-
-@property (nonatomic, strong) NSDate *createdDate;
 
 @property (nonatomic) BOOL isNew;
 

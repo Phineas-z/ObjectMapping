@@ -36,6 +36,11 @@
         
     }
     
+    // Currently no support for NSDictionary, ignore it
+    if ([self isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
     // Single object
     else {
         NSMutableDictionary *jsonObject = [NSMutableDictionary dictionary];

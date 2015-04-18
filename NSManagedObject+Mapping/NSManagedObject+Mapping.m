@@ -139,7 +139,7 @@
     else {
         // Need to check property class/type, if it is special case (date), need to do conversion
         if ([propertyClass isSubclassOfClass:[NSDate class]]) {
-            return (id)[NSObject dateFromJSONValue:JSONObject];
+            return (id)[NSManagedObject dateFromJSONValue:JSONObject];
         }
         
         // Return original value
@@ -210,5 +210,15 @@
 + (Class)inheritBoundary {
     return [NSManagedObject class];
 }
+
+// Default is linux time, could be overriden
++ (NSDate *)dateFromJSONValue:(NSNumber *)value {
+    return [NSDate dateWithTimeIntervalSince1970:[value doubleValue]];
+}
+
++ (NSNumber *)JSONValueFromDate:(NSDate *)date {
+    return [NSNumber numberWithDouble:[date timeIntervalSince1970]];
+}
+
 
 @end
