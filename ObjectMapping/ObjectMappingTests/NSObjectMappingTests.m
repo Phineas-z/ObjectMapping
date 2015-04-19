@@ -7,9 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Tool.h"
 #import "Survivor.h"
 #import "Sword.h"
+#import "Cobblestone.h"
 
 /**
  * The classes used to test is from the scenario of MineCraft game, and also
@@ -241,6 +241,34 @@
 /*
  Test customize JSON key name
  */
+
+- (void)testCustomizedJSONKey {
+    // Create cobblestone
+    Cobblestone *stone = [[Cobblestone alloc] init];
+    stone.hardness = @20;
+    stone.color = [UIColor blackColor];
+    stone.type = @"block";
+    stone.tags = @"tool,solid,black,hard";
+    
+    // Object to JSON
+    NSDictionary *stoneJSON = (NSDictionary*)[stone JSONObject];
+    
+    // Verify stoneJSON
+    NSDictionary *groundTruth = @{
+                                  @"stone_hard": @20,
+                                  @"stone_type": @"block",
+                                  @"tags": @"tool,solid,black,hard"
+                                  };
+    
+    XCTAssertTrue([stoneJSON isEqualToDictionary:groundTruth], @"Object to JSON mapping incorrect");
+    
+    // Object to JSON
+    Cobblestone *clonedStone = [Cobblestone instanceWithJSONObject:stoneJSON];
+    
+    // Verify clonedStone
+    stone.color = nil;
+    XCTAssertTrue([clonedStone isEqual:stone], @"JSON to Object mapping incorrect");
+}
 
 /*
  Test intercept a specific property mapping

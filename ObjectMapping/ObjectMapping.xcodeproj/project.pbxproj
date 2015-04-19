@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BF1639591AE1BA5600DE19B6 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1639581AE1BA5600DE19B6 /* Survivor.m */; };
 		BF16395C1AE1D3D400DE19B6 /* Sword.m in Sources */ = {isa = PBXBuildFile; fileRef = BF16395B1AE1D3D400DE19B6 /* Sword.m */; };
+		BF1639621AE1E90900DE19B6 /* Stone.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1639611AE1E90900DE19B6 /* Stone.m */; };
+		BF1639651AE1E97700DE19B6 /* Cobblestone.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1639641AE1E97700DE19B6 /* Cobblestone.m */; };
 		BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */; };
 		BF2009D61ADCD4650081AA0D /* NSManagedObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */; };
 		BF2009DB1ADCD9450081AA0D /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2009DA1ADCD9450081AA0D /* Tool.m */; };
@@ -39,6 +41,10 @@
 		BF1639581AE1BA5600DE19B6 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		BF16395A1AE1D3D400DE19B6 /* Sword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sword.h; sourceTree = "<group>"; };
 		BF16395B1AE1D3D400DE19B6 /* Sword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sword.m; sourceTree = "<group>"; };
+		BF1639601AE1E90900DE19B6 /* Stone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stone.h; sourceTree = "<group>"; };
+		BF1639611AE1E90900DE19B6 /* Stone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stone.m; sourceTree = "<group>"; };
+		BF1639631AE1E97700DE19B6 /* Cobblestone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cobblestone.h; sourceTree = "<group>"; };
+		BF1639641AE1E97700DE19B6 /* Cobblestone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cobblestone.m; sourceTree = "<group>"; };
 		BF2009D31ADCD4530081AA0D /* NSObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectMappingTests.m; sourceTree = "<group>"; };
 		BF2009D51ADCD4650081AA0D /* NSManagedObjectMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectMappingTests.m; sourceTree = "<group>"; };
 		BF2009D91ADCD9450081AA0D /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
@@ -97,6 +103,10 @@
 				BF16395B1AE1D3D400DE19B6 /* Sword.m */,
 				BF1639571AE1BA5600DE19B6 /* Survivor.h */,
 				BF1639581AE1BA5600DE19B6 /* Survivor.m */,
+				BF1639601AE1E90900DE19B6 /* Stone.h */,
+				BF1639611AE1E90900DE19B6 /* Stone.m */,
+				BF1639631AE1E97700DE19B6 /* Cobblestone.h */,
+				BF1639641AE1E97700DE19B6 /* Cobblestone.m */,
 			);
 			path = PlainObjects;
 			sourceTree = "<group>";
@@ -300,7 +310,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1639651AE1E97700DE19B6 /* Cobblestone.m in Sources */,
 				BF1639591AE1BA5600DE19B6 /* Survivor.m in Sources */,
+				BF1639621AE1E90900DE19B6 /* Stone.m in Sources */,
 				BF2009D41ADCD4530081AA0D /* NSObjectMappingTests.m in Sources */,
 				BFB1E12B1AD704C400470EA6 /* ObjectMappingTests.m in Sources */,
 				BF16395C1AE1D3D400DE19B6 /* Sword.m in Sources */,
