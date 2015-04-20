@@ -32,7 +32,11 @@
         return NO;
     }
     
-    return [self.color isEqual:stone.color];
+    if (self.color) {
+        return [self.color isEqual:stone.color];
+    } else {
+        return !stone.color;
+    }
 }
 
 @end

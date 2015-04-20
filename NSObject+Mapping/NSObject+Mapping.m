@@ -45,7 +45,7 @@
     else {
         NSMutableDictionary *jsonObject = [NSMutableDictionary dictionary];
         // Iterate property dictionary
-        NSDictionary *propertyDictionary = [[self class] propertyDictionary];
+        NSDictionary *propertyDictionary = [[self class] _propertyDictionary];
         for (NSString *jsonkey in propertyDictionary) {
             // Get corresponding property key
             NSString *propertyKey = propertyDictionary[jsonkey];
@@ -81,10 +81,12 @@
 }
 
 /*
- Return all the properties until inherit boundary (not included).
- The default dictionary key and value are all property name.
+ This is a properties gather method. For each class in inheritance chain, if a class implement 
+ propertyDictionary (not include super), then returned dictionary will be gathered into the
+ mapping property dictionary.
  */
-+ (NSDictionary *)propertyDictionary {
+
++ (NSDictionary *)_propertyDictionary {
     // If called on NSObject class, return an empty dictionary
     if ([self class] == [self inheritBoundary]) {
         return @{};
@@ -93,21 +95,59 @@
     // Add properties of self
     NSMutableDictionary *propertyDictionary = [NSMutableDictionary dictionary];
     
-    unsigned int count;
-    objc_property_t *properties = class_copyPropertyList(self, &count);
-    for (NSInteger i = 0; i < count; i++) {
-        NSString *propertyName = [NSString stringWithUTF8String:property_getName(properties[i])];
-        propertyDictionary[propertyName] = propertyName;
+    // Check if this class implement propertyDctionary method
+    if ([[self class] classImplementMethod:@selector(propertyDictionary)]) {
+        [propertyDictionary addEntriesFromDictionary:[self propertyDictionary]];
+        
+    } else {
+        // If not, add default properties
+        unsigned int count;
+        objc_property_t *properties = class_copyPropertyList(self, &count);
+        for (NSInteger i = 0; i < count; i++) {
+            NSString *propertyName = [NSString stringWithUTF8String:property_getName(properties[i])];
+            propertyDictionary[propertyName] = propertyName;
+        }
+        
+        free(properties);
     }
-    
-    free(properties);
     
     // Should inherit properties from super class
     // Merge property dictionary from super class
-    [propertyDictionary addEntriesFromDictionary:[[self superclass] propertyDictionary]];
+    [propertyDictionary addEntriesFromDictionary:[[self superclass] _propertyDictionary]];
     
     // Return the Dict
     return [NSDictionary dictionaryWithDictionary:propertyDictionary];
+}
+
+/*
+ Return all the properties until inherit boundary (not included).
+ The default dictionary key and value are all property name.
+ */
++ (NSDictionary *)propertyDictionary {
+//    // If called on NSObject class, return an empty dictionary
+//    if ([self class] == [self inheritBoundary]) {
+//        return @{};
+//    }
+//    
+//    // Add properties of self
+//    NSMutableDictionary *propertyDictionary = [NSMutableDictionary dictionary];
+//    
+//    unsigned int count;
+//    objc_property_t *properties = class_copyPropertyList(self, &count);
+//    for (NSInteger i = 0; i < count; i++) {
+//        NSString *propertyName = [NSString stringWithUTF8String:property_getName(properties[i])];
+//        propertyDictionary[propertyName] = propertyName;
+//    }
+//    
+//    free(properties);
+//    
+//    // Should inherit properties from super class
+//    // Merge property dictionary from super class
+//    [propertyDictionary addEntriesFromDictionary:[[self superclass] propertyDictionary]];
+//    
+//    // Return the Dict
+//    return [NSDictionary dictionaryWithDictionary:propertyDictionary];
+    return @{};
 }
 
 #pragma mark - JSON to Object
@@ -136,7 +176,7 @@
 // Update properties of an instance with JSON object
 - (void)updateWithJSONObject:(NSDictionary *)JSONObject {
     // Iterate property dictionary
-    NSDictionary *propertyDictionary = [[self class] propertyDictionary];
+    NSDictionary *propertyDictionary = [[self class] _propertyDictionary];
     
     for (NSString *jsonKey in propertyDictionary) {
         id jsonValue = JSONObject[jsonKey];
@@ -196,6 +236,24 @@
 }
 
 #pragma mark - Utils
+
++ (BOOL)classImplementMethod:(SEL)selector {
+    unsigned int count;
+
+    Method *methods = class_copyMethodList(objc_getMetaClass([NSStringFromClass([self class]) UTF8String]), &count);
+    
+    for (NSInteger i = 0; i < count; i++) {
+        NSString *methodName = NSStringFromSelector(method_getName(methods[i]));
+        if ([methodName isEqualToString:NSStringFromSelector(selector)]) {
+            
+            free(methods);
+            return YES;
+        }        
+    }
+    
+    free(methods);
+    return NO;
+}
 
 // Get class name of a specific property
 + (NSString *)classNameOfProperty:(NSString *)propertyKey {
